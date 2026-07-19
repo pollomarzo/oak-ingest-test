@@ -1,32 +1,39 @@
 version: 1
 
-# Starter paper — stamped by `oak bootstrap` (design §1, template changes). This is a
-# NEW-MODEL committed paper: NO `extends:` (compose injects the engine/edition/brand chain
-# at build time), and the single engine coordinate rides myst's untyped `options`
-# passthrough. `oak bootstrap` fills `version`/`edition` below; replace the other
-# placeholders with your paper's real metadata.
+# Interim dogfood paper (design §12 step 0, adapted from engine test/fixture-paper). This
+# is a NEW-MODEL committed paper: NO `extends:` (compose injects the engine/edition/brand
+# chain), and the single engine coordinate rides myst's `options` passthrough ([R36]). It
+# deliberately also carries a sibling option (`youtube`) so a real fixture build proves
+# compose/schema never clobber option keys the engine doesn't own (finding 3 / [R49]).
 project:
-  # A FRESH, UNIQUE id. `oak validate` rejects the journal's `id_sentinel`, so this MUST be
-  # changed to something that matches the journal's `id_pattern`.
-  id: CHANGE-ME-paper-id
-  title: A Starter Paper
-  # date: 2026-01-01
+  # id: satisfies the instance's id_pattern `^fixture-\d{4}-[a-z0-9-]+$` and is NOT the
+  # id_sentinel `fixture-template-placeholder` — so `oak validate` accepts it ([R12], [R47]).
+  id: fixture-2026-interim-paper
+  title: An Interim Dogfood Paper for the Engine Shim
+  date: 2026-07-09
   authors:
-    - name: Author Name
-      # orcid: 0000-0000-0000-0000
+    - name: Ada Fixture
+      orcid: 0000-0002-1825-0097
       affiliations:
-        - Your Institution
+        - Fixture Institute
       corresponding: true
-      email: you@example.org
+      email: ada@example.org
       roles:
+        - conceptualization
+        - software
         - writing - original draft
   keywords:
-    - keyword
+    - fixtures
+    - engine
   bibliography:
     - bib.bib
   options:
-    # The ONE engine knob (design §6). `oak bootstrap` / `oak upgrade` write these; only the
-    # `version` ref floats (a released engine tag). Never a branch tip — CI runs releases.
+    youtube: https://youtu.be/dQw4w9WgXcQ
     oaktree-sapling:
-      version: v0.0.0-dev.14
-      edition: oak-test-edition
+      # A runnable engine ⟺ a release ([R57]): CI runs released tags only, never a branch tip.
+      # Interim pins a dev pre-release (accumulate + prune, ../engine/RELEASING.md); becomes a
+      # real `vX.Y.Z` on canonical. A non-release pin fails loud in the shim (`pin a release`).
+      version: v0.0.0-dev.13
+      edition: fixture-edition
+  doi: 10.5072/zenodo.562233
+  github: https://github.com/pollomarzo/fixture-paper-repo
