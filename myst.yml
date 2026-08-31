@@ -28,5 +28,5 @@ project:
     # The ONE engine knob (design §6). `oak bootstrap` / `oak upgrade` write these; only the
     # `version` ref floats (a released engine tag). Never a branch tip — CI runs releases.
     oaktree-sapling:
-      version: v0.0.0-dev.14
+      version: v0.0.2
       edition: oak-test-edition
